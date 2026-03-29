@@ -14,9 +14,8 @@ import time
 import threading
 
 VID = 0x3710
-PID_WIRED = 0x3410
-PID_WIRELESS = 0x5403
-
+PULSAR_WIRED_PID = [0x3409, 0x3410]
+PULSAR_WIRELESS_PID = [0x5402, 0x5403]
 
 class PulsarDevice:
     """Handle communication with the Pulsar X3 mouse"""
@@ -27,11 +26,11 @@ class PulsarDevice:
 
     def connect(self):
         """Find and connect to the mouse"""
-        self.dev = usb.core.find(idVendor=VID, idProduct=PID_WIRELESS)
+        self.dev = usb.core.find(idVendor=VID, custom_match=lambda d: d.idProduct in PULSAR_WIRELESS_PID)
         self.mode = "wireless"
 
         if not self.dev:
-            self.dev = usb.core.find(idVendor=VID, idProduct=PID_WIRED)
+            self.dev = usb.core.find(idVendor=VID, custom_match=lambda d: d.idProduct in PULSAR_WIRED_PID)
             self.mode = "wired"
 
         if not self.dev:
