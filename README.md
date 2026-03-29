@@ -2,7 +2,10 @@
 
 Control your Pulsar X3 gaming mouse on Linux without needing the Windows Pulsar Fusion app. Works with both wired and wireless modes.
 
-> **Disclaimer**: This is an unofficial, community-developed tool. It is not affiliated with, endorsed by, or supported by Pulsar Gaming Gears. Use at your own risk.
+
+> [!Note]
+> This is an unofficial, community-developed tool.
+> It is not affiliated with, endorsed by, or supported by Pulsar Gaming Gears. Use at your own risk.
 
 ## Features
 
@@ -123,8 +126,8 @@ Polling Rate: 1000Hz (unreliable)
 ## Device Information
 
 - **Vendor ID**: `0x3710` (Pulsar)
-- **Product ID (Wired)**: `0x3410`
-- **Product ID (Wireless)**: `0x5403`
+- **Product ID (Wired)**: `0x3410`,`0x3409`
+- **Product ID (Wireless)**: `0x5403`,`0x5402`
 - **Interface**: 3 (HID Feature Reports)
 
 ## Troubleshooting
