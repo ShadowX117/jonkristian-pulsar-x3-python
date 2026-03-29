@@ -24,8 +24,8 @@ import os
 
 LOCK_FILE = "/tmp/pulsar-x3.lock"
 VID = 0x3710
-PID_WIRED = 0x3410
-PID_WIRELESS = 0x5403
+PULSAR_WIRED_PID = [0x3409, 0x3410]
+PULSAR_WIRELESS_PID = [0x5402, 0x5403]
 
 def calculate_checksum(data):
     """Calculate 16-bit checksum"""
@@ -335,11 +335,11 @@ def main():
         fcntl.flock(lock_fd, fcntl.LOCK_EX)
 
     # Find device - try wireless first, then wired
-    dev = usb.core.find(idVendor=VID, idProduct=PID_WIRELESS)
+    dev = usb.core.find(idVendor=VID, custom_match=lambda d: d.idProduct in PULSAR_WIRELESS_PID)
     mode = "wireless"
 
     if not dev:
-        dev = usb.core.find(idVendor=VID, idProduct=PID_WIRED)
+        dev = usb.core.find(idVendor=VID, custom_match=lambda d: d.idProduct in PULSAR_WIRED_PID)
         mode = "wired"
 
     if not dev:
